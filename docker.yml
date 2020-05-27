@@ -1,0 +1,21 @@
+- hosts: localhost
+  become: yes
+  connection: local
+  tasks:
+   - name: Build Docker image from Dockerfile
+     docker_image:
+        name: web1
+        path: ./docker
+        state: present
+
+   - name: Running the container
+     docker_container:
+        name: web1
+        image: web1:latest
+     #   path: ./docker
+        state: started
+   - name: Start docker
+     shell: docker run -t -d web1:latest
+   - name: Check if container is running
+     shell: docker ps
+
