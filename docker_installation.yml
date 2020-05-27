@@ -1,0 +1,26 @@
+
+- hosts: localhost
+  become: yes
+  connection: local
+  tasks:
+   - name: Docker installation
+     apt:
+        name: docker.io
+        state: present
+   - name: python installation
+     apt:
+        name: python-docker
+        state: present
+   - name: OpenSSl
+     shell: sudo python -m easy_install --upgrade pyOpenSSL
+   - name: docker-py
+     shell: pip install docker-py
+   - name: compose
+     shell: pip install docker-compose
+   - name: Service Start
+     shell: sudo systemctl start docker
+   - name: enable docker
+     shell: sudo systemctl enable docker
+   - name: enable docker
+     shell: sudo usermod -aG docker $USER
+     tags: user
