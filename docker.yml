@@ -15,7 +15,7 @@
      #   path: ./docker
         state: started
    - name: Start docker
-     shell: docker run -t -d web1:latest
+     shell:  docker run --name hello --publish-all -t -d web1:latest
    - name: Check if container is running
      shell: docker ps
 
