@@ -1,1 +1,2 @@
 docker run -t -d centos
+ docker run --name hello --publish-all -t -d web:latest(image)
