@@ -1,0 +1,7 @@
+FROM centos:latest
+RUN yum update && yum install httpd httpd-tools -y
+RUN echo -e '<!DOCTYPE html>\n<html>\n  <head>\n   <title>HTML Meta Tag</title>\n</head>\n<body>\n<p>Hello AWS World</p>\n<p>Please follow <a href='https://terraform-81.s3.ap-south-1.amazonaws.com/Screenshot1.JPG'>Screenshot1</a>.</p>\n<p>Please follow <a href='https://terraform-81.s3.ap-south-1.amazonaws.com/ScrennShot2.JPG'>ScrennShot2</a>.</p>\n<p>Please follow <a href='https://terraform-81.s3.ap-south-1.amazonaws.com/Screenshot3.JPG'>Screenshot3</a>.</p>\n</body>\n</html>' > /var/www/index.html
+EXPOSE  80
+
+CMD     ["/usr/sbin/httpd","-D","FOREGROUND"]
+
