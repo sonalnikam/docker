@@ -1,0 +1,30 @@
+---
+- hosts: docker
+  become: yes
+  connection: local
+  tasks:
+   - name: Build Docker image from Dockerfile
+     docker_image:
+        name: apache
+        path: /home/ubuntu
+        state: build
+
+   - name: Running the container
+     docker_container:
+         name: apache_demo
+         image: apache
+         state: present
+   - name: Running the container
+     docker_container:
+         name: apache_demo
+         tty: yes
+         interactive: no
+         published_ports: 80:80
+         state: started
+
+#   - name: Start docker
+#     shell:  docker run --name hello --publish-all -t -d web1:latest
+#   - name: Check if container is running
+#     shell: docker ps
+
+~
